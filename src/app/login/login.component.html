@@ -1,0 +1,68 @@
+<!-- login/login.component.html -->
+<div class="instagram-login-container">
+    <div class="language-selector">
+      <span>English</span>
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  
+    <div class="login-wrapper">
+      <div class="logo-container">
+        <img src="assets/instagram-logo-white.png" alt="Instagram" class="instagram-logo">
+      </div>
+  
+      <button class="facebook-login-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path fill="white" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+        </svg>
+        <span>Continue with Facebook</span>
+      </button>
+  
+      <div class="separator">
+        <span class="separator-line"></span>
+        <span class="separator-text">OR</span>
+        <span class="separator-line"></span>
+      </div>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-group">
+          <input 
+            type="text" 
+            formControlName="username" 
+            placeholder="Phone number, username, or email"
+            [ngClass]="{'is-invalid': loginForm.get('username')?.invalid && loginForm.get('username')?.touched}"
+          >
+        </div>
+  
+        <div class="form-group">
+          <input 
+            [type]="hidePassword ? 'password' : 'text'" 
+            formControlName="password" 
+            placeholder="Password"
+            [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
+          >
+        </div>
+  
+        <div class="forgot-password">
+          <a href="#">Forgot password?</a>
+        </div>
+  
+        <button 
+          type="submit" 
+          class="login-button" 
+          [disabled]="loginForm.invalid || isSubmitting">
+          <span *ngIf="isSubmitting" class="spinner"></span>
+          <span *ngIf="!isSubmitting">Log in</span>
+        </button>
+      </form>
+  
+      <div class="signup-container">
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+      </div>
+  
+      <div class="terms-text">
+        <p>By continuing, you agree to Instagram's <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </div>

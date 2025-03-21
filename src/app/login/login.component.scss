@@ -1,0 +1,224 @@
+/* login/login.component.scss */
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #ffffff;
+  }
+
+  body, input, button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  
+  .instagram-login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  
+  .language-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    cursor: pointer;
+    
+    span {
+      margin-right: 4px;
+      font-size: 14px;
+      color: #a8a8a8;
+    }
+    
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: #a8a8a8;
+    }
+  }
+  
+  .login-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo-container {
+    margin: 2px auto 4px;
+    text-align: center;
+  }
+  
+  .instagram-logo {
+    width: 175px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 4px;
+  }
+  
+  .facebook-login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0095f6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    padding: 8px 0;
+    width: 100%;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 24px;
+    height: 36px;
+    
+    svg {
+      width: 23px;
+      height: 23px;
+      margin-right: 7px;
+    }
+  }
+  
+  .separator {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 20px;
+  }
+  
+  .separator-line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #363636;
+  }
+  
+  .separator-text {
+    color: #a8a8a8;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 15px;
+    margin: 0 18px;
+    text-transform: uppercase;
+  }
+  
+  .login-form {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 11px;
+    position: relative;
+  }
+  
+  input {
+    width: 20.55rem;
+    padding: 9px 10px;
+    background: #121212;
+    border: 1px solid #494949;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 14px;
+    height: 23px; /* Reduced from 44px to 36px */
+    outline: none;
+  
+    &::placeholder {
+      color: #8e8e8e;
+      font-size: 14px;
+    }
+  
+    &:focus {
+      border-color: #565656;
+    }
+  
+    &.is-invalid {
+      border-color: #ed4956;
+    }
+  }
+  
+  .forgot-password {
+    width: 100%;
+    text-align: right;
+    margin: 12px 0 16px;
+    
+    a {
+      color: #0095f6;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  }
+  
+  .login-button {
+    background-color: #0095f6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    padding: 8px 0;
+    width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    margin-bottom: 10px;
+  
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+  
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .signup-container {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin: 30px 0 40px;
+    
+    p {
+      color: #a8a8a8;
+      margin: 0;
+    }
+    
+    a {
+      color: #0095f6;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+  
+  .terms-text {
+    text-align: center;
+    font-size: 12px;
+    color: #8e8e8e;
+    line-height: 1.5;
+    
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+    
+    a {
+      color: #8e8e8e;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
