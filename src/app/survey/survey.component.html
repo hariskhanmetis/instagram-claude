@@ -1,0 +1,130 @@
+<!-- survey/survey.component.html -->
+<div class="instagram-survey-container">
+    <div class="language-selector">
+      <span>English</span>
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  
+    <div class="survey-wrapper">
+      <div class="logo-container">
+        <img src="assets/instagram-logo-white.png" alt="Instagram" class="instagram-logo">
+      </div>
+  
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width]="getProgressWidth()"></div>
+      </div>
+      <div class="progress-text" *ngIf="!showUserInfoForm">Question {{currentQuestion + 1}} of {{questions.length}}</div>
+  
+      <!-- User Info Form -->
+      <div class="user-info-container" *ngIf="showUserInfoForm">
+        <h2 class="question-text">Before we begin</h2>
+        <p class="info-text">Please tell us a little about yourself:</p>
+        
+        <form [formGroup]="userInfoForm" class="user-info-form">
+          <div class="form-group">
+            <input 
+              type="text" 
+              formControlName="name" 
+              placeholder="Your name"
+              [ngClass]="{'is-invalid': userInfoForm.get('name')?.invalid && userInfoForm.get('name')?.touched}"
+            >
+            <div class="error-message" *ngIf="userInfoForm.get('name')?.invalid && userInfoForm.get('name')?.touched">
+              Please enter your name
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="number" 
+              formControlName="age" 
+              placeholder="Your age"
+              [ngClass]="{'is-invalid': userInfoForm.get('age')?.invalid && userInfoForm.get('age')?.touched}"
+            >
+            <div class="error-message" *ngIf="userInfoForm.get('age')?.invalid && userInfoForm.get('age')?.touched">
+              Please enter a valid age (13-100)
+            </div>
+          </div>
+          
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="next-button" 
+              [disabled]="userInfoForm.invalid"
+              (click)="startSurvey()">
+              Start Survey
+            </button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Survey Questions Form -->
+      <form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="survey-form" *ngIf="!showUserInfoForm">
+        <div class="question-container" *ngIf="currentQuestion < questions.length">
+          <h2 class="question-text">{{questions[currentQuestion].text}}</h2>
+          
+          <div [ngSwitch]="questions[currentQuestion].type">
+            <!-- Multiple choice questions -->
+            <div *ngSwitchCase="'multiple-choice'" class="options-container">
+              <div *ngFor="let option of questions[currentQuestion].options" class="option-item">
+                <label class="option-label">
+                  <input type="radio" [value]="option" formControlName="response">
+                  <span class="option-text">{{option}}</span>
+                </label>
+              </div>
+            </div>
+  
+            <!-- Scale questions -->
+            <div *ngSwitchCase="'scale'" class="scale-container">
+              <div class="scale-labels">
+                <span>{{questions[currentQuestion].minLabel}}</span>
+                <span>{{questions[currentQuestion].maxLabel}}</span>
+              </div>
+              <div class="scale-options">
+                <div *ngFor="let num of [1,2,3,4,5]" class="scale-option">
+                  <label>
+                    <input type="radio" [value]="num" formControlName="response">
+                    <span class="scale-number">{{num}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Text input questions -->
+            <div *ngSwitchCase="'text'" class="text-container">
+              <textarea formControlName="response" rows="4" placeholder="Type your answer here..."></textarea>
+            </div>
+          </div>
+  
+          <div class="button-container">
+            <button 
+              type="button" 
+              class="back-button" 
+              (click)="previousQuestion()">
+              Back
+            </button>
+            <button 
+              type="button" 
+              class="next-button" 
+              [disabled]="surveyForm.get('response')?.invalid"
+              (click)="nextQuestion()">
+              {{currentQuestion === questions.length - 1 ? 'Submit' : 'Next'}}
+            </button>
+          </div>
+        </div>
+  
+        <div class="completion-container" *ngIf="currentQuestion >= questions.length">
+          <div class="completion-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#0095f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="16 9 11 14 8 11"></polyline>
+            </svg>
+          </div>
+          <h2 class="completion-title">Thank You!</h2>
+          <p class="completion-text">Your survey has been submitted successfully. We appreciate your feedback about your Instagram experience.</p>
+          <button type="button" class="home-button" (click)="goHome()">Return Home</button>
+        </div>
+      </form>
+    </div>
+  </div>

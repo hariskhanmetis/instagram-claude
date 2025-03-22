@@ -1,6 +1,7 @@
-// login/login.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -9,40 +10,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  isSubmitting = false;
-  hidePassword = true;
+  isSubmitting: boolean = false;
+  hidePassword: boolean = true;
 
-  constructor(private fb: FormBuilder) {
+  // Backend API URL (update after deployment)
+  private apiUrl = 'http://localhost:3000/login';
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient
+  ) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.isSubmitting = true;
-      // Here you would typically call an authentication service
-      console.log('Login submitted:', this.loginForm.value);
-      
-      // Simulate API call
-      setTimeout(() => {
-        this.isSubmitting = false;
-        // Handle response here
-      }, 1500);
-    } else {
-      // Mark all fields as touched to trigger validation display
-      Object.keys(this.loginForm.controls).forEach(field => {
-        const control = this.loginForm.get(field);
-        control?.markAsTouched({ onlySelf: true });
+      const formData = this.loginForm.value;
+
+      this.http.post(this.apiUrl, formData).subscribe({
+        next: (response) => {
+          console.log('Data saved:', response);
+          this.isSubmitting = false;
+          this.router.navigate(['/survey']);
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          this.isSubmitting = false;
+        }
       });
     }
-  }
-
-  togglePasswordVisibility(): void {
-    this.hidePassword = !this.hidePassword;
   }
 }

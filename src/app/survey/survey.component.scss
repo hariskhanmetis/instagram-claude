@@ -1,0 +1,361 @@
+/* survey/survey.component.scss */
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #ffffff;
+  }
+  
+  .instagram-survey-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  
+  .language-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    cursor: pointer;
+    align-self: flex-start;
+    
+    span {
+      margin-right: 4px;
+      font-size: 14px;
+      color: #a8a8a8;
+    }
+    
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: #a8a8a8;
+    }
+  }
+  /* Add these styles to survey.component.scss */
+
+.user-info-container {
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .info-text {
+    color: #a8a8a8;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .user-info-form {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+    
+    input {
+      width: 100%;
+      padding: 12px 10px;
+      background: #121212;
+      border: 1px solid #494949;
+      border-radius: 3px;
+      color: #ffffff;
+      font-size: 14px;
+      height: 20px;
+      outline: none;
+    
+      &::placeholder {
+        color: #8e8e8e;
+        font-size: 14px;
+      }
+    
+      &:focus {
+        border-color: #565656;
+      }
+    
+      &.is-invalid {
+        border-color: #ed4956;
+      }
+    }
+  }
+  
+  .error-message {
+    color: #ed4956;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .survey-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo-container {
+    margin: 2px auto 20px;
+    text-align: center;
+  }
+  
+  .instagram-logo {
+    width: 175px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 5px;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #262626;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background-color: #0095f6;
+    transition: width 0.3s ease;
+  }
+  
+  .progress-text {
+    align-self: flex-end;
+    font-size: 12px;
+    color: #a8a8a8;
+    margin-bottom: 20px;
+  }
+  
+  .survey-form {
+    width: 100%;
+  }
+  
+  .question-container {
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .question-text {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  
+  .options-container {
+    margin-bottom: 25px;
+  }
+  
+  .option-item {
+    margin-bottom: 15px;
+  }
+  
+  .option-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .option-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .option-text {
+    position: relative;
+    padding-left: 35px;
+    font-size: 15px;
+    color: #f5f5f5;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border: 1px solid #565656;
+      border-radius: 50%;
+      background-color: #121212;
+    }
+  }
+  
+  input:checked ~ .option-text:before {
+    background-color: #0095f6;
+    border-color: #0095f6;
+  }
+  
+  input:checked ~ .option-text:after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+  }
+  
+  .scale-container {
+    margin-bottom: 25px;
+  }
+  
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    
+    span {
+      font-size: 14px;
+      color: #a8a8a8;
+    }
+  }
+  
+  .scale-options {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .scale-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    .scale-number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 1px solid #565656;
+      font-size: 15px;
+      background-color: #121212;
+      transition: all 0.2s ease;
+    }
+    
+    input:checked ~ .scale-number {
+      background-color: #0095f6;
+      border-color: #0095f6;
+    }
+  }
+  
+  .text-container {
+    margin-bottom: 25px;
+    
+    textarea {
+      width: 100%;
+      padding: 10px;
+      background-color: #121212;
+      border: 1px solid #565656;
+      border-radius: 3px;
+      color: #ffffff;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 100px;
+      
+      &:focus {
+        border-color: #8e8e8e;
+        outline: none;
+      }
+      
+      &::placeholder {
+        color: #8e8e8e;
+      }
+    }
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .back-button, .next-button, .home-button {
+    background-color: transparent;
+    border: 1px solid #0095f6;
+    border-radius: 8px;
+    color: #0095f6;
+    font-weight: 600;
+    padding: 8px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: rgba(0, 149, 246, 0.1);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .next-button, .home-button {
+    background-color: #0095f6;
+    color: white;
+    
+    &:hover {
+      background-color: #1877f2;
+    }
+  }
+  
+  .completion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 0;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .completion-icon {
+    margin-bottom: 20px;
+  }
+  
+  .completion-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .completion-text {
+    color: #a8a8a8;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+  
+  .home-button {
+    padding: 10px 25px;
+  }

@@ -1,0 +1,36 @@
+<!-- welcome/welcome.component.html -->
+<div class="instagram-welcome-container">
+    <div class="language-selector">
+      <span>English</span>
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  
+    <div class="welcome-wrapper">
+      <div class="logo-container">
+        <img src="assets/instagram-logo-white.png" alt="Instagram" class="instagram-logo">
+      </div>
+  
+      <div class="welcome-message">
+        <h1>Instagram Usage Survey</h1>
+        <p>Help our research team understand how people use Instagram in their daily lives.</p>
+      </div>
+  
+      <div class="survey-info">
+        <ul>
+          <li>Quick 5-minute survey</li>
+          <li>Share your Instagram experience</li>
+          <li>Help improve social media research</li>
+        </ul>
+      </div>
+  
+      <button class="survey-button" (click)="navigateToLogin()">
+        Start Survey
+      </button>
+  
+      <div class="terms-text">
+        <p>This is an independent research survey and is not affiliated with Instagram or Meta. Your responses will be kept anonymous and confidential.</p>
+      </div>
+    </div>
+  </div>
