@@ -1,17 +1,26 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
-const cors = require('cors'); // Add this line
+const cors = require('cors');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Add this line to enable CORS for all origins
+app.use(cors({ origin: 'https://instagram-claude.herokuapp.com' })); // Restrict CORS to your Heroku domain
+
+// Serve Angular static files
+app.use(express.static(path.join(__dirname, '../dist/instagram-claude')));
+
+// Define dbPath and create data directory if it doesn’t exist
+const dbPath = path.join(__dirname, 'data', 'login_data.db');
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+  fs.mkdirSync(path.join(__dirname, 'data'));
+}
 
 // Connect to SQLite database
-const dbPath = path.join(__dirname, 'login_data.db');
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Error opening database:', err);
@@ -55,6 +64,11 @@ app.get('/logins', (req, res) => {
     }
     res.json(rows);
   });
+});
+
+// Catch-all route to serve Angular app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/instagram-claude/index.html'));
 });
 
 // Start the server

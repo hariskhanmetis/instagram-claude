@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
 
   // Backend API URL (update after deployment)
-  private apiUrl = 'http://localhost:3000/login';
+  private apiUrl = '/login'; // Relative path to backend
 
   constructor(
     private fb: FormBuilder,
