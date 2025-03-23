@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: 'https://instagram-claude.herokuapp.com' })); // Restrict CORS to your Heroku domain
+app.use(cors({ origin: '*' })); // Allow all origins for now
 
 // Serve Angular static files
 app.use(express.static(path.join(__dirname, '../dist/instagram-claude')));
